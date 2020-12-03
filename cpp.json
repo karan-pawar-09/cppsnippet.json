@@ -1,0 +1,22 @@
+{
+	"Console Log": {
+		"prefix": "jaja",
+		"description": "Main Function",
+		"body": "#include<bits/stdc++.h>\nusing namespace std;\n#define ll long long\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n}"
+	},
+	"Number Theory": {
+		"prefix": "ETF",
+		"description": "Eulars Totient Function",
+		"body": "int ETF (int a) {\n    int num=a;\n    for(int i=2;i*i<=a;i++) {\n        if(a%i==0) {\n            while(a%i==0) {\n                a/=i;\n            }\n            num-=num/i;\n        }\n    }\n    if(a>1){\n        num-=num/a;\n    }\n    return num;\n}"
+	},
+	"Number Theory": {
+		"prefix": "extendedEuclideanAlgorithm",
+		"description": "Extended Euclidean Algorithm",
+		"body": "int gcd(int a, int b, int& x, int& y) {\n    if (b == 0) {\n        x = 1;\n        y = 0;\n        return a;\n    }\n    int x1, y1;\n    int d = gcd(b, a % b, x1, y1);\n    x = y1;\n    y = x1 - y1 * (a / b);\n    return d;\n}"
+	},
+	"Number Theory": {
+		"prefix": "seiveOfEratosthenes",
+		"description": "Sieve of Eratosthenes",
+		"body": "int n;\nvector<char> is_prime(n+1, true);\nis_prime[0] = is_prime[1] = false;\nfor (int i = 2; i * i <= n; i++) {\n    if (is_prime[i]) {\n        for (int j = i * i; j <= n; j += i)\n            is_prime[j] = false;\n    }\n}"
+	}
+}
