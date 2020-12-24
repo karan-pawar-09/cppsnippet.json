@@ -4,19 +4,24 @@
 		"description": "Main Function",
 		"body": "#include<bits/stdc++.h>\nusing namespace std;\n#define ll long long\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n}"
 	},
-	"Number Theory": {
+	"Number Theory1": {
 		"prefix": "ETF",
 		"description": "Eulars Totient Function",
 		"body": "int ETF (int a) {\n    int num=a;\n    for(int i=2;i*i<=a;i++) {\n        if(a%i==0) {\n            while(a%i==0) {\n                a/=i;\n            }\n            num-=num/i;\n        }\n    }\n    if(a>1){\n        num-=num/a;\n    }\n    return num;\n}"
 	},
-	"Number Theory": {
+	"Number Theory2": {
 		"prefix": "extendedEuclideanAlgorithm",
 		"description": "Extended Euclidean Algorithm",
 		"body": "int gcd(int a, int b, int& x, int& y) {\n    if (b == 0) {\n        x = 1;\n        y = 0;\n        return a;\n    }\n    int x1, y1;\n    int d = gcd(b, a % b, x1, y1);\n    x = y1;\n    y = x1 - y1 * (a / b);\n    return d;\n}"
 	},
-	"Number Theory": {
+	"Number Theory3": {
 		"prefix": "seiveOfEratosthenes",
 		"description": "Sieve of Eratosthenes",
 		"body": "int n;\nvector<char> is_prime(n+1, true);\nis_prime[0] = is_prime[1] = false;\nfor (int i = 2; i * i <= n; i++) {\n    if (is_prime[i]) {\n        for (int j = i * i; j <= n; j += i)\n            is_prime[j] = false;\n    }\n}"
+	},
+	"Number Theory4": {
+		"prefix": "ncr",
+		"description": "Combinations",
+		"body":"ll ncr(int n, int r) {\n    long long p = 1, k = 1;\n    if (n - r < r)\n        r = n - r;\n    if (r != 0) {\n        while (r) {\n            p *= n;\n            k *= r;\n            long long m = __gcd(p, k);\n            p /= m;\n            k /= m;\n            n--;\n            r--;\n        }\n    }\n    else\n        p = 1;\n    return p;\n}"
 	}
 }
