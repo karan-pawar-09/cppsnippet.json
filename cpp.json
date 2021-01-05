@@ -23,5 +23,11 @@
 		"prefix": "ncr",
 		"description": "Combinations",
 		"body":"ll ncr(int n, int r) {\n    long long p = 1, k = 1;\n    if (n - r < r)\n        r = n - r;\n    if (r != 0) {\n        while (r) {\n            p *= n;\n            k *= r;\n            long long m = __gcd(p, k);\n            p /= m;\n            k /= m;\n            n--;\n            r--;\n        }\n    }\n    else\n        p = 1;\n    return p;\n}"
+	},
+	"sortPair": {
+		"prefix":"sortPair",
+		"description":"Sorting Pairs",
+		"body":"bool pairSort(const pair<pair<int,int>,int> &a,const pair<pair<int,int>,int> &b) {\n    return (a.first.second < b.first.second);\n}"
 	}
 }
+
