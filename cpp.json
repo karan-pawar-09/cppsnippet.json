@@ -1,6 +1,6 @@
 {
 	"Console Log": {
-		"prefix": "jajaj",
+		"prefix": "jaja",
 		"description": "Main Function",
 		"body": "#include<bits/stdc++.h>\nusing namespace std;\n#define ll long long\n#define all(ar) ar.begin(),ar.end()\n#define endl '\\n'\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n}"
 	},
