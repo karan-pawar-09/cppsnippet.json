@@ -28,8 +28,11 @@
 		"prefix":"sortPair",
 		"description":"Sorting Pairs",
 		"body":"bool pairSort(const pair<pair<int,int>,int> &a,const pair<pair<int,int>,int> &b) {\n    return (a.first.second < b.first.second);\n}"
+	},
+	"segmentTree": {
+		"prefix":"segmentTree",
+		"description":"Basic Segment Tree",
+		"body":"struct segtree {\n    ll size;\n    vector<ll> sums;\n    void init(ll n) {\n        size=1;\n        while(size<n) {\n            size*=2;\n        }\n        sums.assign(2*size,0LL);\n    }\n    void build(vector<ll> &a,ll x,ll lx,ll rx) {\n        if(rx-lx==1) {\n            if(lx<((ll)a.size())) {\n                sums[x]=a[lx];\n            }\n            return;\n        }\n        ll m=lx+(rx-lx)/2;\n        build(a,2*x+1,lx,m);\n        build(a,2*x+2,m,rx);\n        sums[x]=sums[2*x+1]+sums[2*x+2];\n    }\n    void build(vector<ll> &a) {\n        build(a,0,0,size);\n    }\n    void set(ll i,ll v,ll x,ll lx,ll rx) {\n        if(rx-lx==1) {\n            sums[x]=v;\n            return;\n        }\n        ll m=lx+(rx-lx)/2;\n        if(i<m) {\n            set(i,v,2*x+1,lx,m);\n        }\n        else {\n            set(i,v,2*x+2,m,rx);\n        }\n        sums[x]=sums[2*x+1]+sums[2*x+2];\n    }\n    void set(ll i,ll v) {\n        set(i,v,0,0,size);\n    }\n    ll sum(ll l,ll r,ll x,ll lx,ll rx) {\n        if(lx>=r|l>=rx) return 0;\n        if(lx>=l&&rx<=r) return sums[x];\n        ll m=lx+(rx-lx)/2;\n        ll s1=sum(l,r,2*x+1,lx,m);\n        ll s2=sum(l,r,2*x+2,m,rx);\n        return s1+s2;\n    }\n    ll sum(ll l,ll r) {\n        return sum(l,r,0,0,size);\n    }\n};"
 	}
 }
-
-
 
