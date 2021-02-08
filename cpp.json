@@ -17,7 +17,7 @@
 	"Number Theory3": {
 		"prefix": "seiveOfEratosthenes",
 		"description": "Sieve of Eratosthenes",
-		"body": "int n;\nvector<char> is_prime(n+1, true);\nis_prime[0] = is_prime[1] = false;\nfor (int i = 2; i * i <= n; i++) {\n    if (is_prime[i]) {\n        for (int j = i * i; j <= n; j += i)\n            is_prime[j] = false;\n    }\n}"
+		"body": "int n;\nvector<bool> is_prime(n+1, true);\nis_prime[0] = is_prime[1] = false;\nfor (int i = 2; i * i <= n; i++) {\n    if (is_prime[i]) {\n        for (int j = i * i; j <= n; j += i)\n            is_prime[j] = false;\n    }\n}"
 	},
 	"Number Theory4": {
 		"prefix": "ncr",
