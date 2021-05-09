@@ -2,7 +2,7 @@
 	"Console Log": {
 		"prefix": "jaja",
 		"description": "Main Function",
-		"body": "#include<bits/stdc++.h>\nusing namespace std;\n#define ll long long\n#define all(ar) ar.begin(),ar.end()\n#define endl '\\n'\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n}"
+		"body": "/*\nauthot:Karan\ncreated:$CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND\n*/\n#include<bits/stdc++.h>\nusing namespace std;\n#define ll long long\n#define all(ar) ar.begin(),ar.end()\n#define endl '\\n'\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n}"
 	},
 	"Number Theory1": {
 		"prefix": "ETF",
@@ -41,4 +41,3 @@
 	}
 	
 }
-
