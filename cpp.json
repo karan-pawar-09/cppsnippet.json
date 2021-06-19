@@ -19,7 +19,7 @@
 			"    // freopen(\"input.txt\",\"r\",stdin);",
 			"    // freopen(\"output.txt\",\"w\",stdout);",
 			"    ",
-			"}",
+			"}"
 		]
 	},
 	"Number Theory1": {
@@ -40,7 +40,7 @@
 			"        num-=num/a;",
 			"    }",
 			"    return num;",
-			"}",
+			"}"
 		]
 	},
 	"Number Theory2": {
@@ -58,7 +58,7 @@
 			"    x = y1;",
 			"    y = x1 - y1 * (a / b);",
 			"    return d;",
-			"}",
+			"}"
 		]
 	},
 	"Number Theory3": {
@@ -73,7 +73,7 @@
 			"        for (int j = i * i; j <= n; j += i)",
 			"            is_prime[j] = false;",
 			"    }",
-			"}",
+			"}"
 		]
 	},
 	"Number Theory4": {
@@ -98,7 +98,7 @@
 			"    else",
 			"        p = 1;",
 			"    return p;",
-			"}",
+			"}"
 		]
 	},
 	"Number Theory5": {
@@ -117,7 +117,7 @@
 			" }",
 			" ll modInv(ll a) {",
 			"    return modExp(a,M-2) % M ;",
-			" }",
+			" }"
 		]
 	},
 	"sortPair": {
@@ -126,7 +126,7 @@
 		"body":[
 			"bool pairSort(const pair<pair<int,int>,int> &a,const pair<pair<int,int>,int> &b) {",
 			"    return (a.first.second < b.first.second);",
-			"}",
+			"}"
 		]
 	},
 	"segmentTree": {
@@ -217,7 +217,7 @@
 			"    ll solve(ll k,ll l) {",
 			"        return solve(k,0,size,0,l);",
 			"    }",
-			"};",
+			"};"
 		]
 	},
 	"DSU": {
@@ -232,19 +232,19 @@
 			"",
 			"void make_set(ll v) {",
 			"    parent[v] = v;",
-			"    size[v] = 1;",
+			"    magnitude[v] = 1;",
 			"}",
 			"",
 			"void union_sets(ll a, ll b) {",
 			"    a = find_set(a);",
 			"    b = find_set(b);",
 			"    if (a != b) {",
-			"        if (size[a] < size[b])",
+			"        if (magnitude[a] < magnitude[b])",
 			"            swap(a, b);",
 			"        parent[b] = a;",
-			"        size[a] += size[b];",
+			"        magnitude[a] += magnitude[b];",
 			"    }",
-			"}",
+			"}"
 		]
 	},
 	"ceil": {
@@ -252,6 +252,121 @@
 		"description": "Alternative of ceil",
 		"body": [
 			"(a+b-1)/b"
+		]
+	},
+	"power": {
+		"prefix": "power mod",
+		"description": "Modular Power Function",
+		"body": [
+			"const ll mod=(ll)1e9+7;",
+			"",
+			"ll power(long long x, unsigned ll y, ll mod) {",
+			"    ll res = 1; ",
+			"    x = x % mod;   ",
+			"    if (x == 0) return 0;  ",
+			"    while (y > 0) {        ",
+			"        if (y & 1)",
+			"            res = (res*x) % mod; ",
+			"        y = y>>1;",
+			"        x = (x*x) % mod;",
+			"    }",
+			"    return res;",
+			"}"
+		]
+	},
+	"suffixArray":{
+		"prefix": "suffix array",
+		"description": "Suffix Array",
+		"body": [
+			"void radix_sort(vector<pair<pair<int,int>,int>> &a) {",
+			"    int n=a.size();",
+			"    {",
+			"        vector<int> cnt(n);",
+			"        for(int i=0;i<n;i++) {",
+			"            cnt[a[i].first.second]++;",
+			"        }",
+			"        vector<pair<pair<int,int>,int>> a_new(n);",
+			"        vector<int>pos(n);",
+			"        pos[0]=0;",
+			"        for(int i=1;i<n;i++) {",
+			"            pos[i]=pos[i-1]+cnt[i-1];",
+			"        }",
+			"        for(int i=0;i<n;i++) {",
+			"            a_new[pos[a[i].first.second]]=a[i];",
+			"            pos[a[i].first.second]++;",
+			"        }",
+			"        a=a_new;",
+			"    }",
+			"    {",
+			"        vector<int> cnt(n);",
+			"        for(int i=0;i<n;i++) {",
+			"            cnt[a[i].first.first]++;",
+			"        }",
+			"        vector<pair<pair<int,int>,int>> a_new(n);",
+			"        vector<int>pos(n);",
+			"        pos[0]=0;",
+			"        for(int i=1;i<n;i++) {",
+			"            pos[i]=pos[i-1]+cnt[i-1];",
+			"        }",
+			"        for(int i=0;i<n;i++) {",
+			"            a_new[pos[a[i].first.first]]=a[i];",
+			"            pos[a[i].first.first]++;",
+			"        }",
+			"        a=a_new;",
+			"    }",
+			"}",
+			"int main() {",
+			"    ios_base::sync_with_stdio(false);",
+			"    cin.tie(NULL);",
+			"    string s;",
+			"    cin>>s;",
+			"    s+=\"$\";",
+			"    int n=s.size();",
+			"    vector<int> p(n),c(n);",
+			"    {",
+			"        vector<pair<char,int>> a(n);",
+			"        for(int i=0;i<n;i++) {",
+			"            a[i]={s[i],i};",
+			"        }",
+			"        sort(all(a));",
+			"        for(int i=0;i<n;i++) {",
+			"            p[i]=a[i].second;",
+			"        }",
+			"        c[p[0]]=0;",
+			"        for(int i=1;i<n;i++) {",
+			"            if(a[i].first==a[i-1].first) {",
+			"                c[p[i]]=c[p[i-1]];",
+			"            }",
+			"            else {",
+			"                c[p[i]]=c[p[i-1]]+1;",
+			"            }",
+			"        }",
+			"    }",
+			"    int k=0;",
+			"    while((1<<k)<n) {",
+			"        vector<pair<pair<int,int>,int>> a(n);",
+			"        for(int i=0;i<n;i++) {",
+			"            a[i]={{c[i],c[(i+(1<<k))%n]},i};",
+			"        }",
+			"        radix_sort(a);",
+			"        for(int i=0;i<n;i++) {",
+			"            p[i]=a[i].second;",
+			"        }",
+			"        c[p[0]]=0;",
+			"        for(int i=1;i<n;i++) {",
+			"            if(a[i].first==a[i-1].first) {",
+			"                c[p[i]]=c[p[i-1]];",
+			"            }",
+			"            else {",
+			"                c[p[i]]=c[p[i-1]]+1;",
+			"            }",
+			"        }",
+			"        k++;",
+			"    }",
+			"    for(int i=0;i<n;i++) {",
+			"        cout<<p[i]<<\" \";",
+			"    }",
+			"}"
 		]
 	}
 	
