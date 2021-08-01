@@ -19,7 +19,7 @@
 			"    // freopen(\"input.txt\",\"r\",stdin);",
 			"    // freopen(\"output.txt\",\"w\",stdout);",
 			"    $0",
-			"}"
+			"}",
 		]
 	},
 	"Number Theory1": {
@@ -40,7 +40,7 @@
 			"        num-=num/a;",
 			"    }",
 			"    return num;",
-			"}"
+			"}",
 		]
 	},
 	"Number Theory2": {
@@ -58,7 +58,7 @@
 			"    x = y1;",
 			"    y = x1 - y1 * (a / b);",
 			"    return d;",
-			"}"
+			"}",
 		]
 	},
 	"Number Theory3": {
@@ -73,7 +73,7 @@
 			"        for (int j = i * i; j <= n; j += i)",
 			"            is_prime[j] = false;",
 			"    }",
-			"}"
+			"}",
 		]
 	},
 	"Number Theory4": {
@@ -98,7 +98,7 @@
 			"    else",
 			"        p = 1;",
 			"    return p;",
-			"}"
+			"}",
 		]
 	},
 	"Number Theory5": {
@@ -117,7 +117,7 @@
 			" }",
 			" ll modInv(ll a) {",
 			"    return modExp(a,M-2) % M ;",
-			" }"
+			" }",
 		]
 	},
 	"sortPair": {
@@ -126,7 +126,7 @@
 		"body":[
 			"bool pairSort(const pair<pair<int,int>,int> &a,const pair<pair<int,int>,int> &b) {",
 			"    return (a.first.second < b.first.second);",
-			"}"
+			"}",
 		]
 	},
 	"segmentTree": {
@@ -217,7 +217,7 @@
 			"    ll solve(ll k,ll l) {",
 			"        return solve(k,0,size,0,l);",
 			"    }",
-			"};"
+			"};",
 		]
 	},
 	"DSU": {
@@ -244,7 +244,7 @@
 			"        parent[b] = a;",
 			"        magnitude[a] += magnitude[b];",
 			"    }",
-			"}"
+			"}",
 		]
 	},
 	"ceil": {
@@ -271,7 +271,7 @@
 			"        x = (x*x) % mod;",
 			"    }",
 			"    return res;",
-			"}"
+			"}",
 		]
 	},
 	"suffixArray":{
@@ -366,9 +366,65 @@
 			"    for(int i=0;i<n;i++) {",
 			"        cout<<p[i]<<\" \";",
 			"    }",
-			"}"
+			"}",
 		]
-	}
+	},
+	"LCA": {
+		"prefix": "LCA",
+		"description": "LCA using binary lifting",
+		"body": [
+			"ll n, l;",
+			"vector<vector<ll>> adj;",
+			" ",
+			"ll timer;",
+			"vector<ll> tin, tout;",
+			"vector<vector<ll>> up;",
+			" ",
+			"void dfs(ll v, ll p) {",
+			"    tin[v] = ++timer;",
+			"    up[v][0] = p;",
+			"    for (ll u : adj[v]) {",
+			"        if (u != p)",
+			"            dfs(u, v);",
+			"    }",
+			"    tout[v] = ++timer;",
+			"}",
+			" ",
+			"bool is_ancestor(ll u, ll v) {",
+			"    return tin[u] <= tin[v] && tout[u] >= tout[v];",
+			"}",
+			" ",
+			"ll lca(ll u, ll v) {",
+			"    if (is_ancestor(u, v))",
+			"        return u;",
+			"    if (is_ancestor(v, u))",
+			"        return v;",
+			"    for (ll i = l; i >= 0; --i) {",
+			"        if ((up[u][i]!=-1)&&(!is_ancestor(up[u][i], v)))",
+			"            u = up[u][i];",
+			"    }",
+			"    return up[u][0];",
+			"}",
+			" ",
+			"void preprocess(ll root) {",
+			"    tin.resize(n+1);",
+			"    tout.resize(n+1); //remainder to resize adj to size(n+1) and clearing up;",
+			"    timer = 0;",
+			"    l = ceil(log2(n));",
+			"    up.assign(n+1, vector<ll>(l + 1,-1));",
+			"    dfs(root, -1);",
+			"    for(ll j=1;j<=l;j++) {",
+			"        for(ll i=1;i<=n;i++) {",
+			"            if(up[i][j-1]!=-1) {",
+			"                ll par=up[i][j-1];",
+			"                up[i][j]=up[par][j-1];",
+			"            }",
+			"        }",
+			"    }",
+			"}",
+			
+		]
+	},
 	
 }
 
